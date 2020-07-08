@@ -1,0 +1,48 @@
+.bar{
+	width: 15%;
+}
+
+.button{
+	cursor: pointer;
+	border-radius: 8px;
+}
+
+.zen-button{
+	background-color: black;
+}
+
+.sand-button{
+	background-color: sandybrown;
+}
+
+.water-button{
+	background-color: blue;
+}
+
+.stone-button{
+	background-color: gray;
+}
+
+.fire-button{
+	background-color: red;
+}
+
+.game-button{
+	background-color: black;
+}
+
+.ice-button{
+	background-color: lightblue;
+}
+
+.plants-button{
+	background-color: green;
+}
+
+.oil-button{
+	background-color: lightgray;
+}
+
+.wood-button{
+	background-color: burlywood;
+}
