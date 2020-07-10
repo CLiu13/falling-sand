@@ -1,48 +1,51 @@
+body{
+	background-image: linear-gradient(#BAE1FF, #3C7DFA);
+	color: #1C222A;
+	position: static;
+	overflow: hidden;
+}
+
 .bar{
 	width: 15%;
 }
 
 .button{
 	cursor: pointer;
-	border-radius: 8px;
+	border-radius: 5px;
+}
+
+.buttons-container{
+	height: 50px;
+}
+
+.dropdown{
+	background-color: #3C7DFA;
+}
+
+.dropdown-content{
+	display:none;
+	z-index:999;
+}
+
+.dropdown:hover .dropdown-content{
+	display:block;
+	border-top: 1px solid black;
+}
+
+.material-select{
+	padding: 0;
+	margin: 4px;
+}
+
+.material-select:hover::before{
+	content:"> ";
 }
 
 .zen-button{
 	background-color: black;
 }
 
-.sand-button{
-	background-color: sandybrown;
-}
-
-.water-button{
-	background-color: blue;
-}
-
-.stone-button{
-	background-color: gray;
-}
-
-.fire-button{
-	background-color: red;
-}
-
-.game-button{
-	background-color: black;
-}
-
-.ice-button{
-	background-color: lightblue;
-}
-
-.plants-button{
-	background-color: green;
-}
-
-.oil-button{
-	background-color: lightgray;
-}
-
-.wood-button{
-	background-color: burlywood;
+.particles{
+	background-color: aliceblue;
+	z-index:-999;
 }
