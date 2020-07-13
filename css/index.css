@@ -4,7 +4,7 @@ body{
 	position: static;
 	overflow: hidden;
 	font-family: "Abel", sans-serif;
-	letter-spacing: 1px;
+	letter-spacing: 0.05em;
 }
 
 .bar{
@@ -14,6 +14,9 @@ body{
 .button{
 	cursor: pointer;
 	border-radius: 5px;
+	color: #bae1ff;
+	background-color: #3C7DFA;
+	border-color: black;
 }
 
 .buttons-container{
@@ -22,6 +25,7 @@ body{
 
 .dropdown{
 	background-color: #3C7DFA;
+	min-width: 120px;
 }
 
 .dropdown-content{
@@ -31,20 +35,16 @@ body{
 
 .dropdown:hover .dropdown-content{
 	display:block;
-	border-top: 1px solid black;
+	border-top: 1px solid #bae1ff;
 }
 
 .material-select{
 	padding: 0;
-	margin: 4px;
+	margin: 0.2em;
 }
 
 .material-select:hover::before{
-	content:"> ";
-}
-
-.zen-button{
-	background-color: black;
+	content: "> ";
 }
 
 .particles{
