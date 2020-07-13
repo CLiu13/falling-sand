@@ -3,6 +3,8 @@ body{
 	color: #1C222A;
 	position: static;
 	overflow: hidden;
+	font-family: "Abel", sans-serif;
+	letter-spacing: 1px;
 }
 
 .bar{
