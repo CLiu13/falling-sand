@@ -1,0 +1,53 @@
+body{
+	background-image: linear-gradient(#BAE1FF, #3C7DFA);
+	color: #1C222A;
+	position: static;
+	overflow: hidden;
+	font-family: "Abel", sans-serif;
+	letter-spacing: 0.05em;
+}
+
+.bar{
+	width: 15%;
+}
+
+.button{
+	cursor: pointer;
+	border-radius: 5px;
+	color: #bae1ff;
+	background-color: #3C7DFA;
+	border-color: black;
+}
+
+.buttons-container{
+	height: 50px;
+}
+
+.dropdown{
+	background-color: #3C7DFA;
+	min-width: 120px;
+}
+
+.dropdown-content{
+	display:none;
+	z-index:999;
+}
+
+.dropdown:hover .dropdown-content{
+	display:block;
+	border-top: 1px solid #bae1ff;
+}
+
+.material-select{
+	padding: 0;
+	margin: 0.2em;
+}
+
+.material-select:hover::before{
+	content: "> ";
+}
+
+.particles{
+	background-color: aliceblue;
+	z-index:-999;
+}

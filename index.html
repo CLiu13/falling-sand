@@ -2,15 +2,42 @@
 <html>
 	<head>
 		<title>Falling Sand</title>
+		<link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.min.css">
+		
 		<link rel="stylesheet" href="css/index.css">
 		
 		<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
 	</head>
 	
-	<body>
-		Sand!
+	<body class="vw-100 vh-100 pa3 pb0 flex flex-column">
+		<div class="title f1 tc mb2 mt3">
+			falling sand
+		</div>
+		
+		<div class="buttons-container w-80 center mb2 mh2">
+			<!--
+			<div class="button w-20 ba pa2 tc bw1">
+				zen / game
+			</div>
+			-->
+			
+			
+			<div class="button w-20 ba pa2 tc bw1 fr dropdown">
+				<p class="f3 ma1">materials &darr;</p>
+				<div class="dropdown-content">
+					<li class="list tc f4">
+						<ul class="material-select">sand</ul>
+						<ul class="material-select">water</ul>
+					</li>
+				</div>
+			</div>
+		</div>
+		
+		<div class="particles w-80 bl bt br bw1 pa3 center h-100">
+			some particles
+		</div>
 		
 		<script src="js/index.js"></script>
 	</body>
-
 </html>
