@@ -9,8 +9,9 @@
 		
 		<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
       
-      <script src="js/water.js" async></script>
-      <script src="js/sand.js" defer></script>
+        <script src="js/water.js" async></script>
+        <script src="js/sand.js" async></script>
+        <script src="js/dropsystem.js" async></script>
 	</head>
 	
 	<body class="vw-100 vh-100 pa3 pb0 flex flex-column">
@@ -19,19 +20,12 @@
 		</div>
 		
 		<div class="buttons-container w-80 center mb2 mh2">
-			<!--
-			<div class="button w-20 ba pa2 tc bw1">
-				zen / game
-			</div>
-			-->
-			
-			
 			<div class="button w-30 ba pa2 tc bw1 fr dropdown">
 				<p class="f3 ma1">materials &darr;</p>
 				<div class="dropdown-content">
 					<li class="list tc f4">
-						<ul onclick = "differentMaterial(1)" class="material-select">sand</ul>
-						<ul onclick = "differentMaterial(2)" class="material-select">water</ul>
+						<ul onclick = "system.differentMaterial(1)" class="material-select">sand</ul>
+						<ul onclick = "system.differentMaterial(2)" class="material-select">water</ul>
 					</li>
 				</div>
 			</div>
