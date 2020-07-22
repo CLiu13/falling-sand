@@ -9,37 +9,13 @@ class ParticleManager {
     addNewParticle(x, y) {
         let obj;
         
-        if(this.material == 1) obj = new SandParticle(x, y);
+        if(this.material == 1) obj = new SandParticle(random(mouseX - 20, mouseX + 20), random(mouseY - 20, mouseY + 20));
         else if (this.material == 2) obj = new WaterParticle(random(mouseX - 20, mouseX + 20), random(mouseY - 20, mouseY + 20));
         
         this.particles.push(obj);
     }
 
-    collisionCheck() {
-        for (let i = 0; i < this.particles.length; i++) {
-            if (this.particles[i].y < height - 17) {
-                let angle = 0.0;
-                while (angle < 360) {
-                    let colx = 1 * cos(angle) + this.particles[i].x;
-                    let coly = 1 * sin(angle) + this.particles[i].y;
-                    let bounces = false;
-                    if (get(colx, coly)[0] != 255 && get(colx, coly)[1] != 255 && get(colx, coly)[2] != 255) {
-                        if (get(colx, coly)[0] != 0 && get(colx, coly)[1] != 180 && get(colx, coly)[2] != 225) {
-                            bounces = true;
-                        }
-                    }
-                    if (bounces) {
-                        this.particles[i].x += this.particles[i].x - colx;
-                        this.particles[i].y += this.particles[i].y - coly;
-                    }
-                    angle += 30.0;
-                }
-            }
-        }
-    }
-
     simulate() {
-        this.collisionCheck();
         this.particles.forEach((p)=>{
             p.run();
         });
