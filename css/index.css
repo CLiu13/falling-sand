@@ -1,8 +1,9 @@
 body{
 	background-image: linear-gradient(#BAE1FF, #3C7DFA);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #3C7DFA;
 	color: #1C222A;
-	position: static;
-	overflow: hidden;
 	font-family: "Abel", sans-serif;
 	letter-spacing: 0.05em;
 }
@@ -48,6 +49,12 @@ body{
 }
 
 .particles{
-	background-color: aliceblue;
 	z-index:-999;
+    min-width: 0;
+}
+
+canvas{
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-top: 2px solid black;
 }
