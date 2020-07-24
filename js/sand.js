@@ -9,17 +9,16 @@ class SandParticle {
 
         this.yvel = 0.3;
         this.xvel = 0;
-        
-        this.stopped = false;
+
+        this.stoppedStrikes  = 0;
     }
 
     run() {
         this.fall();
-        this.display();
     }
 
     fall() {
-        if(this.stopped) return;
+        if(this.stoppedStrikes > 20) return;
         let collisionCode = system.collided(this.x, this.y);
 
         // these are hardcoded to be only for rotations of pi/4 rad but that can be changed later
@@ -44,35 +43,41 @@ class SandParticle {
             
             this.x += this.xvel;
 
-        }
-
-        else if (this.y < height-20 && this.y + this.yvel < height-20) {
-            
-            this.yvel *= 1.05;
-            
-            this.y += this.yvel;
-
-            this.x += this.xvel;
-            
         } else {
-            
-            if(get(this.x, this.y+1)[0] != 255){
-                // once we figure out a better way of not calculating stopped particles we should check for bottom left and bottom right pixels to be filled in before stopping a pixel but get() is really slow
-                // && get(this.x-1, this.y+1)[0] != 255 && get(this.x+1, this.y+1)[0] != 255){
-                
-                // this would be the place to handle objects that are already on the ground
-                this.stopped = true;
+            let below = get(this.x, this.y+2);
+
+            let left = get(this.x-2, this.y+2);
+
+            let right = get(this.x+2, this.y+2);
+
+            if(below[0] != 255 && left[0] != 255 && right[0] != 255){
+
+                // allow for the edge cases to be handled by adding a strike system
+                // it only stops if the particle cannot move for 20 frames in a row.
+                this.stoppedStrikes++;
+
                 return;
             }
-            
-            this.y +=1;
+
+            this.stoppedStrikes = 0;
+
+            this.yvel *= 1.05;
+
+            this.y += this.yvel;
+            this.x += this.xvel;
+
+            if(this.y > height-8){
+                this.y = height-8;
+            }
         }
     }
 
     display() {
         push()
-        stroke(194, 178, 127); // sand color
+        stroke(194, 178, 127);  // sand color
+        fill(194, 178, 127);   // fill circle
         circle(this.x, this.y, 2);
         pop();
     }
-}
+}        
+this.partiallyStopped = false;

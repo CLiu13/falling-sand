@@ -9,16 +9,17 @@ class ParticleManager {
     addNewParticle(x, y) {
         let obj;
         
-        if(this.material == 1) obj = new SandParticle(random(mouseX - 20, mouseX + 20), random(mouseY - 20, mouseY + 20));
-        else if (this.material == 2) obj = new WaterParticle(random(mouseX - 20, mouseX + 20), random(mouseY - 20, mouseY + 20));
+        if(this.material == 1) obj = new SandParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+        else if (this.material == 2) obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
         
         this.particles.push(obj);
     }
 
     simulate() {
-        this.particles.forEach((p)=>{
-            p.run();
-        });
+        for(let i = 0; i < this.particles.length; i++){
+            this.particles[i].run();
+            this.particles[i].display();
+        }
     }
     
     differentMaterial(check) {

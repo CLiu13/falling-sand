@@ -11,6 +11,8 @@ class WaterParticle {
 
         this.yvel = 0.3;
         this.xvel = 0;
+
+        this.stopped = false;
     }
 
     run() {
@@ -19,6 +21,8 @@ class WaterParticle {
     }
 
     fall() {
+        if(this.stopped) return;
+        
         let collisionCode = system.collided(this.x, this.y);
 
         // these are hardcoded to be only for rotations of pi/4 rad but that can be changed later
@@ -55,9 +59,11 @@ class WaterParticle {
             
         } else {
             if(get(this.x, this.y)[0] != 255){
-                this.x += random(-2, 2)
+                this.x += random(-2, 2);
+
+                this.stopped = true;
             }
-            this.y = height - 10;
+            this.y = height - 8;
         }
     }
     

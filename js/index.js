@@ -39,6 +39,7 @@ function setup() {
 function windowResized() {
     selector = document.getElementById("particle-canvas");
     canvas = createCanvas(selector.clientWidth, selector.offsetHeight);
+    line(0, selector.clientHeight - 5, selector.clientWidth, selector.clientHeight - 5);
     canvas.parent("particle-canvas");
 }
 
@@ -49,7 +50,7 @@ function draw() {
     push();
     stroke("black");
     strokeWeight(15);
-    line(0, selector.clientHeight - 5, selector.clientWidth, selector.clientHeight - 5);
+    line(0, selector.clientHeight - 5, selector.clientWidth+20, selector.clientHeight - 5);
     pop();
     
     
