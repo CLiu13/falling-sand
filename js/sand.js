@@ -9,54 +9,75 @@ class SandParticle {
 
         this.yvel = 0.3;
         this.xvel = 0;
+
+        this.stoppedStrikes  = 0;
     }
 
     run() {
         this.fall();
-        this.display();
     }
 
     fall() {
+        if(this.stoppedStrikes > 20) return;
         let collisionCode = system.collided(this.x, this.y);
 
         // these are hardcoded to be only for rotations of pi/4 rad but that can be changed later
+        // sand is so light it doesn't really bounce so don't need many hard calculations
 
         if (collisionCode == 1) { // bounce to the right
-
-            this.yvel /= 2;
-
-            if (this.xvel < 0) {
-                this.xvel = 0;
-            }
-
-            this.xvel = this.xvel + this.yvel / 2;
-
-        } else if (collisionCode == 2) { // bounce to the left
-
-            this.yvel /= 2;
-
-            if (this.xvel > 0) {
-                this.xvel = 0;
-            }
-
-            this.xvel = this.xvel - this.yvel / 2;
-
-        }
-
-        if (this.y < height-10 && this.y + this.yvel < height-10) {
-            this.yvel = this.yvel * 1.05
             this.y += this.yvel;
 
-            this.x += this.xvel;
-        } else {
-            this.y = height - 10;
-        }
+            if (this.xvel <= 0) {
+                this.xvel = this.yvel;
+            }
 
-        this.display();
+            this.x += this.xvel;
+
+        } else if (collisionCode == 2) { // bounce to the left
+            this.y += this.yvel;
+            
+            
+            if(this.xvel >= 0){
+                this.xvel = -this.yvel;
+            }
+            
+            this.x += this.xvel;
+
+        } else {
+            let below = get(this.x, this.y+2);
+
+            let left = get(this.x-2, this.y+2);
+
+            let right = get(this.x+2, this.y+2);
+
+            if(below[0] != 255 && left[0] != 255 && right[0] != 255){
+
+                // allow for the edge cases to be handled by adding a strike system
+                // it only stops if the particle cannot move for 20 frames in a row.
+                this.stoppedStrikes++;
+
+                return;
+            }
+
+            this.stoppedStrikes = 0;
+
+            this.yvel *= 1.05;
+
+            this.y += this.yvel;
+            this.x += this.xvel;
+
+            if(this.y > height-8){
+                this.y = height-8;
+            }
+        }
     }
 
     display() {
-        stroke(194, 178, 127); // sand color
+        push()
+        stroke(194, 178, 127);  // sand color
+        fill(194, 178, 127);   // fill circle
         circle(this.x, this.y, 2);
+        pop();
     }
-}
+}        
+this.partiallyStopped = false;
