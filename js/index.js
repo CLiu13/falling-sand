@@ -57,7 +57,9 @@ function draw() {
     system.drawRectangles();
 
     if (mouseIsPressed) {
+        if(mouseX > 0 && mouseX< selector.clientWidth && mouseY > 0 && mouseY < selector.clientHeight){
             system.addNewParticle(mouseX, mouseY);
+        }
     }
     
     system.simulate();
