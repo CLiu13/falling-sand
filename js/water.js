@@ -20,57 +20,33 @@ class WaterParticle {
         this.display();
     }
 
-    fall() {
-        if(this.stopped) return;
-
-        let collisionCode = system.collided(this.x, this.y);
-
-        // these are hardcoded to be only for rotations of pi/4 rad but that can be changed later
-        // sand is so light it doesn't really bounce so don't need many hard calculations
-
-        // bounce to the right
-        if (collisionCode == 1) {
-            this.y += this.yvel;
-
-            if (this.xvel <= 0) {
-                this.xvel = this.yvel;
-            }
-
-            this.x += this.xvel;
-
-        // bounce to the left
-        } else if (collisionCode == 2) {
-            this.y += this.yvel;
-
-            if (this.xvel >= 0) {
-                this.xvel = -this.yvel;
-            }
-
-            this.x += this.xvel;
-        }
-
-        else if (this.y < height-10 && this.y + this.yvel < height-10) {
-            this.yvel *= 1.05;
-
-            this.y += this.yvel;
-            this.x += this.xvel;
-
-        } else {
-            if (get(this.x, this.y)[0] != 255) {
-                this.x += random(-2, 2);
-
-                this.stopped = true;
-            }
-
-            this.y = height - 8;
-        }
+  fall() {
+    if (get(this.x,this.y+1)[0]==255 && get(this.x,this.y+1)[1]==255 && get(this.x,this.y+1)[2]==255) {
+      //only falls if pixel below is empty/not white
+      this.yvel *=1.05;
+      this.y += this.yvel;;
     }
-
-    display() {
-        push();
-        stroke(0, 220, 220);
-        fill(0, 180, 225);
-        circle(this.x, this.y, 2);
-        pop();
+    else{
+        this.move();
     }
+  }
+  atBottom(){
+   if(this.y>height-8){
+     return false;
+   }
+    return true;
+  }
+  
+  move(){
+      this.x += random(-this.speed, this.speed);//moves droplet back and forth at random speed
+
+  }
+  
+
+  display() {
+    stroke(0,220,220);
+    fill(0, 180,225);
+    circle(this.x, this.y, 2);
+  }
+  
 }
