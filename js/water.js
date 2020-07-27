@@ -5,11 +5,11 @@ class WaterParticle {
         // also creates speed property of how fast the droplets move back and forth 
         this.x = xval;
         this.y = yval;
-        if (this.y < height) {
+        /*if (this.y < height) {
             this.y = this.y + 5;
-        }
+        } */
 
-        this.yvel = 0.3;
+        this.yvel = 0.1;
         this.xvel = 0;
 
         this.stopped = false;
@@ -21,24 +21,29 @@ class WaterParticle {
     }
 
   fall() {
-    if (get(this.x,this.y+1)[0]==255 && get(this.x,this.y+1)[1]==255 && get(this.x,this.y+1)[2]==255) {
+    let index =  (this.x + (this.y+1) *width)*4;
+    if (get(this.x,(this.y+this.yvel))[0]==255) {
       //only falls if pixel below is empty/not white
-      this.yvel *=1.05;
-      this.y += this.yvel;;
+      this.y += this.yvel;
+      this.yvel*=1.05
+    }
+    if (get(this.x,(this.y+1))[0]==255){
+      //only falls if pixel below is empty/not white
+      this.y += 1;
     }
     else{
         this.move();
     }
   }
   atBottom(){
-   if(this.y>height-8){
+   if(this.y>height-25){
      return false;
    }
     return true;
   }
   
   move(){
-      this.x += random(-this.speed, this.speed);//moves droplet back and forth at random speed
+      this.x += random(-1, 1) ;//moves droplet back and forth at random speed
 
   }
   
