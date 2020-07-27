@@ -1,60 +1,60 @@
-body{
-	background-image: linear-gradient(#BAE1FF, #3C7DFA);
+body {
+    background-image: linear-gradient(#BAE1FF, #3C7DFA);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #3C7DFA;
-	color: #1C222A;
-	font-family: "Abel", sans-serif;
-	letter-spacing: 0.05em;
+    color: #1C222A;
+    font-family: "Abel", sans-serif;
+    letter-spacing: 0.05em;
 }
 
-.bar{
-	width: 15%;
+.bar {
+    width: 15%;
 }
 
-.button{
-	cursor: pointer;
-	border-radius: 5px;
-	color: #bae1ff;
-	background-color: #3C7DFA;
-	border-color: black;
+.button {
+    cursor: pointer;
+    border-radius: 5px;
+    color: #bae1ff;
+    background-color: #3C7DFA;
+    border-color: black;
 }
 
-.buttons-container{
-	height: 50px;
+.buttons-container {
+    height: 50px;
 }
 
-.dropdown{
-	background-color: #3C7DFA;
-	min-width: 120px;
+.dropdown {
+    background-color: #3C7DFA;
+    min-width: 120px;
 }
 
-.dropdown-content{
-	display:none;
-	z-index:999;
+.dropdown-content {
+    display: none;
+    z-index: 999;
 }
 
-.dropdown:hover .dropdown-content{
-	display:block;
-	border-top: 1px solid #bae1ff;
+.dropdown:hover .dropdown-content {
+    display: block;
+    border-top: 1px solid #bae1ff;
 }
 
-.material-select{
-	padding: 0;
-	margin: 0.2em;
+.material-select {
+    padding: 0;
+    margin: 0.2em;
 }
 
-.material-select:hover::before{
-	content: "> ";
+.material-select:hover::before {
+    content: "> ";
 }
 
-.particles{
-	z-index:-999;
+.particles {
+    z-index: -999;
     min-width: 0;
 }
 
 canvas{
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
 }

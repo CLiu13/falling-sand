@@ -26,13 +26,12 @@ class Rectangle {
     }
 }
 
-
 function setup() {
     selector = document.getElementById("particle-canvas");
     let canvas = createCanvas(selector.clientWidth, selector.offsetHeight + 100);
 
     canvas.parent("particle-canvas");
-    
+
     system = new ParticleManager();
 }
 
@@ -43,24 +42,22 @@ function windowResized() {
     canvas.parent("particle-canvas");
 }
 
-
 function draw() {
     background('white');
-    //creates bottom 'floor' of structure
+    // creates bottom 'floor' of structure
     push();
     stroke("black");
     strokeWeight(15);
     line(0, selector.clientHeight - 5, selector.clientWidth+20, selector.clientHeight - 5);
     pop();
-    
-    
+
     system.drawRectangles();
 
     if (mouseIsPressed) {
-        if(mouseX > 0 && mouseX< selector.clientWidth && mouseY > 0 && mouseY < selector.clientHeight){
+        if (mouseX > 0 && mouseX< selector.clientWidth && mouseY > 0 && mouseY < selector.clientHeight) {
             system.addNewParticle(mouseX, mouseY);
         }
     }
-    
+
     system.simulate();
 }
