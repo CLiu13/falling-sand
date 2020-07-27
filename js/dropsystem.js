@@ -1,31 +1,32 @@
 class ParticleManager {
     constructor() {
         this.particles = [];
-        this.material = 1;          // 1 for sand, 2 for water
+        // 1 for sand, 2 for water
+        this.material = 1;
         this.rectangles = [new Rectangle(200, 50, 200, 5, 1/4),
                            new Rectangle(400, 300, 200, 5, -1/4)];
     }
 
     addNewParticle(x, y) {
         let obj;
-        
+
         if(this.material == 1) obj = new SandParticle(random(x - 10, x + 10), random(y - 10, y + 10));
         else if (this.material == 2) obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
-        
+
         this.particles.push(obj);
     }
 
     simulate() {
-        for(let i = 0; i < this.particles.length; i++){
+        for (let i = 0; i < this.particles.length; i++) {
             this.particles[i].run();
             this.particles[i].display();
         }
     }
-    
+
     differentMaterial(check) {
         this.material = check;
     }
-    
+
     collided(x, y) {
         for (var i = 0; i < this.rectangles.length; i++) {
             if (this.rectangles[i].rot > 0) {
@@ -40,8 +41,8 @@ class ParticleManager {
         }
         return 0;
     }
-    
-    drawRectangles(){
+
+    drawRectangles() {
         this.rectangles.forEach((r) => {
             push();
             translate(r.x, r.y);
