@@ -15,11 +15,6 @@ class WaterParticle {
         this.stopped = false;
     }
 
-    run() {
-        this.fall();
-        this.display();
-    }
-
   fall() {
     let index =  (this.x + (this.y+1) *width)*4;
     if (get(this.x,(this.y+this.yvel))[0]==255) {

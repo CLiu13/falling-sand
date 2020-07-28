@@ -22,7 +22,8 @@ class ParticleManager {
     simulate() {
       this.collisionCheck();
         for (let i = 0; i < this.particles.length; i++) {
-            this.particles[i].run();
+            this.particles[i].fall();
+            this.particles[i].display();
         }
     }
 

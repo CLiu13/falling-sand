@@ -13,10 +13,6 @@ class SandParticle {
         this.stoppedStrikes  = 0;
     }
 
-    run() {
-        this.fall();
-    }
-
     fall() {
         if(this.stoppedStrikes > 20) return;
         let collisionCode = system.collided(this.x, this.y);
@@ -79,5 +75,3 @@ class SandParticle {
         pop();
     }
 }
-
-this.partiallyStopped = false;
