@@ -13,11 +13,15 @@ class ParticleManager {
 
         if (this.material == 1) {
             obj = new SandParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+            this.particles.push(obj);
         } else if (this.material == 2) {
             obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+            this.particles.push(obj);
+        } else if (this.material == 3) {
+            this.eraseFunction(x,y);
         }
 
-        this.particles.push(obj);
+        
     }
 
     simulate() {
@@ -61,5 +65,13 @@ class ParticleManager {
             rect(0, 0, r.w, r.h);
             pop();
         });
+    }
+    eraseFunction(x,y){
+     let j=0;
+      while(j<this.particles.length){
+        if (this.particles[j].x ==x  && this.particles[j].y==y){
+          this.particles.splice(j,1)}
+        j++;
+      }
     }
 }
