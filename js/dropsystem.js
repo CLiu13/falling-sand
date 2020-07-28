@@ -66,12 +66,14 @@ class ParticleManager {
             pop();
         });
     }
+
     eraseFunction(x,y){
-     let j=0;
-      while(j<this.particles.length){
-        if (this.particles[j].x ==x  && this.particles[j].y==y){
-          this.particles.splice(j,1)}
-        j++;
-      }
+        for(let i = 0; i < this.particles.length; i++) {
+            let particle = this.particles[i];
+
+            if (particle.x > x - 10 && particle.x < x + 10 && particle.y > y - 10  && particle.y < y + 10) {
+                this.particles.splice(i,1);
+            }
+        }
     }
 }

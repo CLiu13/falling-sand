@@ -53,6 +53,10 @@ function draw() {
 
     system.drawRectangles();
 
+    if (system.material == 3){
+        circle(mouseX, mouseY, 20);
+    }
+
     if (mouseIsPressed) {
         if (mouseX > 0 && mouseX < selector.clientWidth && mouseY > 0 && mouseY < selector.clientHeight) {
             system.addNewParticle(mouseX, mouseY);
