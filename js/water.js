@@ -5,11 +5,6 @@ class WaterParticle {
         // also creates speed property of how fast the droplets move back and forth 
         this.x = xval;
         this.y = yval;
-        /*
-        if (this.y < height) {
-            this.y = this.y + 5;
-        }
-        */
 
         this.yvel = 0.3;
         this.xvel = 0;
@@ -52,6 +47,7 @@ class WaterParticle {
                 // allow for the edge cases to be handled by adding a strike system
                 // it only stops if the particle cannot move for 20 frames in a row.
                 this.stoppedStrikes++;
+                
                 return;
             } else if (below[0] != 255) {
                 if (left[0] == 255 && right[0] == 255) {
