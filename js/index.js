@@ -48,13 +48,13 @@ function draw() {
     push();
     stroke("black");
     strokeWeight(15);
-    line(0, selector.clientHeight - 5, selector.clientWidth+20, selector.clientHeight - 5);
+    line(0, selector.clientHeight - 5, selector.clientWidth + 20, selector.clientHeight - 5);
     pop();
 
     system.drawRectangles();
 
     if (mouseIsPressed) {
-        if (mouseX > 0 && mouseX< selector.clientWidth && mouseY > 0 && mouseY < selector.clientHeight) {
+        if (mouseX > 0 && mouseX < selector.clientWidth && mouseY > 0 && mouseY < selector.clientHeight) {
             system.addNewParticle(mouseX, mouseY);
         }
     }
