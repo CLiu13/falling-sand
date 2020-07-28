@@ -2,6 +2,7 @@ class ParticleManager {
     constructor() {
         this.particles = [];
         this.waterparticles = [];
+        this.length=0;
         // 1 for sand, 2 for water
         this.material = 1;
         this.rectangles = [new Rectangle(200, 50, 200, 5, 1/4),
