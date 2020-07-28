@@ -5,48 +5,87 @@ class WaterParticle {
         // also creates speed property of how fast the droplets move back and forth 
         this.x = xval;
         this.y = yval;
-        /*if (this.y < height) {
+        /*
+        if (this.y < height) {
             this.y = this.y + 5;
-        } */
+        }
+        */
 
-        this.yvel = 0.1;
+        this.yvel = 0.3;
         this.xvel = 0;
 
-        this.stopped = false;
+        this.stoppedStrikes = 0;
     }
 
-  fall() {
-    let index =  (this.x + (this.y+1) *width)*4;
-    if (get(this.x,(this.y+this.yvel))[0]==255) {
-      //only falls if pixel below is empty/not white
-      this.y += this.yvel;
-      this.yvel*=1.05
-    }
-    if (get(this.x,(this.y+1))[0]==255){
-      //only falls if pixel below is empty/not white
-      this.y += 1;
-    }
-    else{
-        this.move();
-    }
-  }
-  atBottom(){
-   if(this.y>height-25){
-     return false;
-   }
-    return true;
-  }
-  
-  move(){
-      this.x += random(-1, 1) ;//moves droplet back and forth at random speed
+    fall() {
+        if (this.stoppedStrikes > 20) return;
 
-  }
-  
+        let collisionCode = system.collided(this.x, this.y);
 
-  display() {
-    stroke(0,220,220);
-    fill(0, 180,225);
-    circle(this.x, this.y, 2);
-  }
-  
+        // these are hardcoded to be only for rotations of pi/4 rad but that can be changed later
+        if (collisionCode == 1) {
+            // bounce right
+            this.y += this.yvel;
+
+            if (this.xvel <= 0) {
+                this.xvel = this.yvel;
+            }
+
+            this.x += this.xvel;
+
+        } else if (collisionCode == 2) {
+            // bounce left
+            this.y += this.yvel;
+
+            if (this.xvel >= 0) {
+                this.xvel = -this.yvel;
+            }
+
+            this.x += this.xvel;
+
+        } else {
+            let below = get(this.x, this.y + 2);
+            let left = get(this.x - 2, this.y);
+            let right = get(this.x + 2, this.y);
+
+            if (below[0] != 255 && left[0] != 255 && right[0] != 255) {
+                // allow for the edge cases to be handled by adding a strike system
+                // it only stops if the particle cannot move for 20 frames in a row.
+                this.stoppedStrikes++;
+                return;
+            } else if (below[0] != 255) {
+                if (left[0] == 255 && right[0] == 255) {
+                    this.x += random(-1, 1);
+                } else if (left[0] == 255) {
+                    this.x += -1;
+                } else if (right[0] == 255) {
+                    this.x += 1;
+                }
+
+                return;
+            }
+
+            this.stoppedStrikes = 0;
+
+            this.yvel *= 1.05;
+
+            this.y += this.yvel;
+            this.x += this.xvel;
+
+            if (this.y > height - 8) {
+                this.y = height - 8;
+            }
+        }
+    }
+
+    display() {
+        push()
+        // water color
+        stroke(0, 220, 220);
+        // fill circle
+        fill(0, 180, 225);
+        circle(this.x, this.y, 2);
+        pop();
+    }
+
 }

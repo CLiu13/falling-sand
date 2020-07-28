@@ -1,27 +1,26 @@
 class ParticleManager {
     constructor() {
         this.particles = [];
-        this.waterparticles = [];
-        this.length=0;
         // 1 for sand, 2 for water
         this.material = 1;
-        this.rectangles = [new Rectangle(200, 50, 200, 5, 1/4),
-                           new Rectangle(400, 300, 200, 5, -1/4)];
+        this.rectangles = [new Rectangle(200, 50, 200, 5, 1 / 4),
+            new Rectangle(400, 300, 200, 5, -1 / 4)
+        ];
     }
 
     addNewParticle(x, y) {
         let obj;
 
-        if(this.material == 1) obj = new SandParticle(random(x - 10, x + 10), random(y - 10, y + 10));
-        else if (this.material == 2){ obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
-        this.waterparticles[this.length] =obj;
-        this.length++;}
+        if (this.material == 1) {
+            obj = new SandParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+        } else if (this.material == 2) {
+            obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+        }
 
         this.particles.push(obj);
     }
 
     simulate() {
-      this.collisionCheck();
         for (let i = 0; i < this.particles.length; i++) {
             this.particles[i].fall();
             this.particles[i].display();
@@ -32,31 +31,9 @@ class ParticleManager {
         this.material = check;
     }
 
-    collisionCheck(){
-    for(let i=0;i<this.waterparticles.length;i++){ //goes through array of droplets
-      if(this.waterparticles[i].atBottom() ){ 
-      let angle=0.0;
-      while(angle<360){
-        let colx = 1*cos(angle) + this.waterparticles[i].x;
-        let coly = 1*sin(angle) + this.waterparticles[i].y; //checks the points along the circumference of the droplet to see if there is another object
-        let bounces = false;
-        let index = (colx + coly * width )*4;
-        if(get(colx,coly)[0]!=255){
-          if(get(colx,coly)[1]!=220){
-            bounces=true;
-          }
-      }
-        if(bounces){ //if the droplet is colliding with another object adds the difference to its x and y
-          this.waterparticles[i].x += this.waterparticles[i].x - colx;
-          this.waterparticles[i].y += this.waterparticles[i].y - coly;
-        }
-        angle+=45.0;
-        //goes through the circumference at 30 degree intervals to prevent lagging 
-      }
+    getPixelIndex(x, y) {
+        return round((x + y * width) * 4);
     }
-    }
-    
-  }
 
     collided(x, y) {
         for (var i = 0; i < this.rectangles.length; i++) {
