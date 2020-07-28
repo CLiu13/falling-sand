@@ -3,28 +3,36 @@ class ParticleManager {
         this.particles = [];
         // 1 for sand, 2 for water
         this.material = 1;
-        this.rectangles = [new Rectangle(200, 50, 200, 5, 1/4),
-                           new Rectangle(400, 300, 200, 5, -1/4)];
+        this.rectangles = [new Rectangle(200, 50, 200, 5, 1 / 4),
+            new Rectangle(400, 300, 200, 5, -1 / 4)
+        ];
     }
 
     addNewParticle(x, y) {
         let obj;
 
-        if(this.material == 1) obj = new SandParticle(random(x - 10, x + 10), random(y - 10, y + 10));
-        else if (this.material == 2) obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+        if (this.material == 1) {
+            obj = new SandParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+        } else if (this.material == 2) {
+            obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+        }
 
         this.particles.push(obj);
     }
 
     simulate() {
         for (let i = 0; i < this.particles.length; i++) {
-            this.particles[i].run();
+            this.particles[i].fall();
             this.particles[i].display();
         }
     }
 
     differentMaterial(check) {
         this.material = check;
+    }
+
+    getPixelIndex(x, y) {
+        return round((x + y * width) * 4);
     }
 
     collided(x, y) {
