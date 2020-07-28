@@ -70,8 +70,10 @@ class ParticleManager {
     eraseFunction(x,y){
         for(let i = 0; i < this.particles.length; i++) {
             let particle = this.particles[i];
+            let dist = Math.sqrt((particle.x - x) ** 2 + (particle.y - y) ** 2);      
 
-            if (particle.x > x - 10 && particle.x < x + 10 && particle.y > y - 10  && particle.y < y + 10) {
+            // the circle around the cursor has diameter 20 (so radius 10)
+            if (dist <= 10) {
                 this.particles.splice(i,1);
             }
         }
