@@ -19,6 +19,12 @@ class ParticleManager {
             obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
             this.activeParticles.push(obj);
         }
+            this.particles.push(obj);
+        } else if (this.material == 3) {
+            this.eraseFunction(x,y);
+        }
+
+        
     }
 
     simulate() {
@@ -66,5 +72,17 @@ class ParticleManager {
             rect(0, 0, r.w, r.h);
             pop();
         });
+    }
+
+    eraseFunction(x,y){
+        for(let i = 0; i < this.particles.length; i++) {
+            let particle = this.particles[i];
+            let dist = Math.sqrt((particle.x - x) ** 2 + (particle.y - y) ** 2);      
+
+            // the circle around the cursor has diameter 20 (so radius 10)
+            if (dist <= 10) {
+                this.particles.splice(i,1);
+            }
+        }
     }
 }

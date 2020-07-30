@@ -60,4 +60,13 @@ function draw() {
     }
 
     system.simulate();
+
+    if (system.material == 3){
+        push();
+        stroke(0, 0, 0);
+        fill(255, 255, 255, 0);
+        circle(mouseX, mouseY, 20);
+        pop();
+    }
+
 }
