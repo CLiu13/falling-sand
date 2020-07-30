@@ -1,6 +1,7 @@
 class ParticleManager {
     constructor() {
-        this.particles = [];
+        this.activeParticles=[];
+        this.staticParticles=[];
         // 1 for sand, 2 for water
         this.material = 1;
         this.rectangles = [new Rectangle(200, 50, 200, 5, 1 / 4),
@@ -13,17 +14,21 @@ class ParticleManager {
 
         if (this.material == 1) {
             obj = new SandParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+            this.staticParticles.push(obj);
         } else if (this.material == 2) {
             obj = new WaterParticle(random(x - 10, x + 10), random(y - 10, y + 10));
+            this.activeParticles.push(obj);
         }
-
-        this.particles.push(obj);
     }
 
     simulate() {
-        for (let i = 0; i < this.particles.length; i++) {
-            this.particles[i].fall();
-            this.particles[i].display();
+        for (let i = 0; i < this.activeParticles.length; i++) {
+            this.activeParticles[i].fall();
+            this.activeParticles[i].display();
+        }
+        for(let j=0; j<this.staticParticles.length; j++){
+            this.staticParticles[i].fall();
+            this.staticParticles[i].display();
         }
     }
 
