@@ -78,8 +78,8 @@ function draw() {
     if (mouseIsPressed) {
         if (mouseX > 0 && mouseX < selector.clientWidth && mouseY > 0 && mouseY < selector.clientHeight) {
 
-            for(let i = 0; i < system.rectangles.length && !dragging; i++){
-                if(system.rectangles[i].contains(mouseX, mouseY)){
+            for( let i = 0; i < system.rectangles.length && !dragging; i++) {
+                if (system.rectangles[i].contains(mouseX, mouseY)) {
                     dragging = true;
                     dragnum = i;
                     mousePrevX = mouseX;
@@ -87,8 +87,9 @@ function draw() {
                 }
             }
 
-            if(!dragging){
+            if (!dragging) {
                 system.addNewParticle(mouseX, mouseY);
+                
             } else {
                 system.rectangles[dragnum].incrementCoords(mouseX - mousePrevX, mouseY - mousePrevY);
 
@@ -99,7 +100,7 @@ function draw() {
     } else {
         dragging = false;
     }
-    
+
     system.simulate();
 
     if (system.material == 3) {

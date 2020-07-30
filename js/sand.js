@@ -58,21 +58,21 @@ class SandParticle {
             let below = system.board[this.y+5][this.x];
             let left = system.board[this.y+5][this.x-5];
 
-            if(below != undefined || left != undefined){
+            if (below != undefined || left != undefined) {
                 return;
             }
 
             this.set(undefined);
 
-            if (below == undefined){
+            if (below == undefined) {
                 this.y += 5;
             }
 
-            if (left == undefined){
+            if (left == undefined) {
                 this.x -= 5;
             }
 
-        } else if(collisionCode == 3){
+        } else if(collisionCode == 3) {
             this.set(this);
             return;
 
@@ -105,7 +105,7 @@ class SandParticle {
             this.y += 5;
         }
 
-        if(this.y >= height-12){
+        if (this.y >= height-12) {
             this.y = height-12;
             this.stoppedStrikes++;
         }

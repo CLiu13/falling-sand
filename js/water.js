@@ -39,17 +39,17 @@ class WaterParticle {
             let below = system.board[this.y+5][this.x];
             let right = system.board[this.y+5][this.x+5];
 
-            if(below != undefined || right != undefined){
+            if (below != undefined || right != undefined) {
                 return;
             }
 
             this.set(undefined);
 
-            if (below == undefined){
+            if (below == undefined) {
                 this.y += 5;
             }
 
-            if (right == undefined){
+            if (right == undefined) {
                 this.x += 5;
             }
 
@@ -59,7 +59,7 @@ class WaterParticle {
             let below = system.board[this.y+5][this.x];
             let left = system.board[this.y+5][this.x-5];
 
-            if(below != undefined || left != undefined){
+            if (below != undefined || left != undefined) {
                 return;
             }
 
@@ -73,10 +73,11 @@ class WaterParticle {
                 this.x -= 5;
             }
 
-        } else if(collisionCode == 3){
+        } else if(collisionCode == 3) {
             this.set(this);
 
             return;
+            
         } else {
             let below = system.board[this.y+5][this.x];
             let left = system.board[this.y][this.x-5];
