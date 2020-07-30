@@ -76,7 +76,7 @@ class WaterParticle {
 
                 this.set(this);
 
-                
+                return;
             }
 
             this.set(undefined);
