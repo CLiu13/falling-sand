@@ -20,7 +20,7 @@ class SandParticle {
                 this.x += 5;
                 this.stoppedStrikes = 0;
 
-            } else if (system.board[this.y+5][this.x-5] == undefined){
+            } else if (system.board[this.y+5][this.x-5] == undefined) {
                 this.x -= 5;
                 this.stoppedStrikes = 0;
 
@@ -43,7 +43,7 @@ class SandParticle {
         } else if (collisionCode == 2) {
             // bounce left
             this.set(undefined);
-            
+
             this.y += 5;
 
             this.x -= 5;
@@ -84,7 +84,7 @@ class SandParticle {
         this.set(this);
     }
 
-    set(dat){
+    set(dat) {
         for (let i = -2; i <= 2; i++) {
             for (let j = -2; j <= 2; j++) {
                 system.board[this.y+i][this.x+j] = dat;

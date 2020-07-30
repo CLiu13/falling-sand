@@ -11,7 +11,7 @@ class WaterParticle {
 
     fall() {
         if (this.stoppedStrikes > 30) {
-            if(this.y >= height-11){
+            if(this.y >= height-11) {
                 return;                
             }
 
@@ -66,12 +66,15 @@ class WaterParticle {
 
                 this.set(undefined);
 
-                if(left == undefined && right == undefined) {
+                if (left == undefined && right == undefined) {
                     this.x += [-5, 5][Math.floor(Math.random() * 2)];
+
                 } else if (left == undefined) {
                     this.x -= 5;
+
                 } else if (right == undefined) {
                     this.x += 5;
+
                 }
 
                 this.set(this);
@@ -86,17 +89,16 @@ class WaterParticle {
 
             this.y += 5;            
             
-            if(this.y >= height-12){
+            if (this.y >= height-12) {
                 this.y = height-12;
                 this.stoppedStrikes++;
             }
         }
-
-
+        
         this.set(this);
     }
 
-    set(dat){
+    set(dat) {
         for (let i = -2; i <= 2; i++) {
             for (let j = -2; j <= 2; j++) {
                 system.board[this.y+i][this.x+j] = dat;
