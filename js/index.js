@@ -14,14 +14,14 @@ class Rectangle {
 
     rightcontains(x, y) {
         return this.x <= x && x <= this.endx &&
-            this.y <= y && this.y - y < this.slope * (x - this.x) + 6 &&
+            this.y <= y && this.y - y < this.slope * (x - this.x) + 10 &&
             this.y - y > this.slope * (x - this.x) - 10;
     }
 
     leftcontains(x, y) {
         return this.x <= x && x <= this.endx &&
             this.y >= y && this.endy <= y &&
-            -(y - this.y) <= this.slope * (x - this.x) + 6 &&
+            -(y - this.y) <= this.slope * (x - this.x) + 12 &&
             -(y - this.y) >= this.slope * (x - this.x) - 10;
     }
 }
@@ -61,7 +61,7 @@ function draw() {
 
     system.simulate();
 
-    if (system.material == 3){
+    if (system.material == 3) {
         push();
         stroke(0, 0, 0);
         fill(255, 255, 255, 0);

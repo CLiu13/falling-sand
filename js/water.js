@@ -6,70 +6,102 @@ class WaterParticle {
         this.x = xval;
         this.y = yval;
 
-        this.yvel = 0.3;
-        this.xvel = 0;
-
         this.stoppedStrikes = 0;
     }
 
     fall() {
-        if (this.stoppedStrikes > 20) return;
+        if (this.stoppedStrikes > 30) {
+            if(this.y >= height-11) {
+                return;                
+            }
+
+            if (system.board[this.y+5][this.x] == undefined) {
+                this.stoppedStrikes = 0;
+
+            } else if (system.board[this.y][this.x+5] == undefined) {
+                this.x += 5;
+                this.stoppedStrikes = 0;
+
+            } else if (system.board[this.y][this.x-5] == undefined){
+                this.x -= 5;
+                this.stoppedStrikes = 0;
+
+            } else {
+                return;
+            }
+        }
 
         let collisionCode = system.collided(this.x, this.y);
 
         // these are hardcoded to be only for rotations of pi/4 rad but that can be changed later
         if (collisionCode == 1) {
             // bounce right
-            this.y += this.yvel;
+            this.set(undefined);
+            
+            this.y += 5;
 
-            if (this.xvel <= 0) {
-                this.xvel = this.yvel;
-            }
-
-            this.x += this.xvel;
+            this.x += 5;
 
         } else if (collisionCode == 2) {
             // bounce left
-            this.y += this.yvel;
+            this.set(undefined);
 
-            if (this.xvel >= 0) {
-                this.xvel = -this.yvel;
-            }
+            this.y += 5;
 
-            this.x += this.xvel;
+            this.x -= 5;
 
         } else {
-            let below = get(this.x, this.y + 2);
-            let left = get(this.x - 2, this.y);
-            let right = get(this.x + 2, this.y);
+            let below = system.board[this.y+5][this.x];
+            let left = system.board[this.y][this.x-5];
+            let right = system.board[this.y][this.x+5];
 
-            if (below[0] != 255 && left[0] != 255 && right[0] != 255) {
+            if (below != undefined && left != undefined && right != undefined) {
                 // allow for the edge cases to be handled by adding a strike system
-                // it only stops if the particle cannot move for 20 frames in a row.
+                // it only stops if the particle cannot move for x frames in a row.
                 this.stoppedStrikes++;
-                
+
                 return;
-            } else if (below[0] != 255) {
-                if (left[0] == 255 && right[0] == 255) {
-                    this.x += random(-1, 1);
-                } else if (left[0] == 255) {
-                    this.x += -1;
-                } else if (right[0] == 255) {
-                    this.x += 1;
+
+            } else if (below != undefined) {
+
+                this.set(undefined);
+
+                if (left == undefined && right == undefined) {
+                    this.x += [-5, 5][Math.floor(Math.random() * 2)];
+
+                } else if (left == undefined) {
+                    this.x -= 5;
+
+                } else if (right == undefined) {
+                    this.x += 5;
+
                 }
+
+                this.set(this);
 
                 return;
             }
+
+            this.set(undefined);
+            
 
             this.stoppedStrikes = 0;
 
-            this.yvel *= 1.05;
+            this.y += 5;            
+            
+            if (this.y >= height-12) {
+                this.y = height-12;
+                this.stoppedStrikes++;
+            }
+        }
+        
+        this.set(this);
+    }
 
-            this.y += this.yvel;
-            this.x += this.xvel;
-
-            if (this.y > height - 8) {
-                this.y = height - 8;
+    set(dat) {
+        for (let i = -2; i <= 2; i++) {
+            for (let j = -2; j <= 2; j++) {
+                system.board[this.y+i][this.x+j] = dat;
             }
         }
     }
@@ -78,9 +110,8 @@ class WaterParticle {
         push()
         // water color
         stroke(0, 220, 220);
-        // fill circle
         fill(0, 180, 225);
-        circle(this.x, this.y, 2);
+        square(this.x, this.y, 5);
         pop();
     }
 
