@@ -80,8 +80,8 @@ class WaterParticle {
 
         } else {
             let below = system.board[this.y + 5][this.x];
-            let left = system.board[this.y][this.x - 5];
-            let right = system.board[this.y][this.x + 5];
+            let left = system.board[this.y+5][this.x - 5];
+            let right = system.board[this.y+5][this.x + 5];
 
             if (below != undefined && left != undefined && right != undefined) {
                 // allow for the edge cases to be handled by adding a strike system
@@ -90,9 +90,11 @@ class WaterParticle {
 
                 return;
 
-            } else if (below != undefined) {
+            } 
+            this.set(undefined)
+            if (below != undefined) {
 
-                this.set(undefined);
+               
 
                 if (left == undefined && right == undefined) {
                     this.x += [-5, 5][Math.floor(Math.random() * 2)];
