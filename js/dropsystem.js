@@ -1,18 +1,16 @@
 class ParticleManager {
-    constructor() {
+    constructor(rectangles) {
         this.particles = [];
         
         this.board = new Array(height);
         
-        for(var i = 0; i < height; i++) {
+        for (var i = 0; i < height; i++) {
             this.board[i] = new Array(width);
         }
 
         // 1 for sand, 2 for water
         this.material = 1;
-        this.rectangles = [new Rectangle(200, 50, 200, 5, 1 / 4),
-            new Rectangle(400, 300, 200, 5, -1 / 4)
-        ];
+        this.rectangles = rectangles;
     }
 
     addNewParticle(x, y) {
@@ -58,18 +56,22 @@ class ParticleManager {
     }
 
     collided(x, y) {
+        let ret = 0;
+
         for (var i = 0; i < this.rectangles.length; i++) {
+            
             if (this.rectangles[i].rot > 0) {
                 if (this.rectangles[i].rightcontains(x, y)) {
-                    return 1;
+                    ret += 1;
                 }
             } else if (this.rectangles[i].rot < 0) {
                 if (this.rectangles[i].leftcontains(x, y)) {
-                    return 2;
+                    ret += 2;
                 }
             }
         }
-        return 0;
+
+        return ret;
     }
 
     drawRectangles() {
@@ -86,17 +88,14 @@ class ParticleManager {
     }
 
     erase(x,y){
-        x = round(x);
-        y = round(y);
-
-        for(let i = 0; i < this.particles.length; i++) {
+        for (let i = 0; i < this.particles.length; i++) {
             let particle = this.particles[i];
             let dist = Math.sqrt((particle.x - x) ** 2 + (particle.y - y) ** 2);      
 
             // the circle around the cursor has diameter 20 (so radius 10)
             if (dist <= 10) {
                 this.particles[i].set(undefined);
-                this.particles.splice(i,1);
+                this.particles.splice(i, 1);
             }
         }
     }
