@@ -77,8 +77,7 @@ function draw() {
 
     if (mouseIsPressed) {
         if (mouseX > 0 && mouseX < selector.clientWidth && mouseY > 0 && mouseY < selector.clientHeight) {
-
-            for( let i = 0; i < system.rectangles.length && !dragging; i++) {
+            for (let i = 0; i < system.rectangles.length && !dragging; i++) {
                 if (system.rectangles[i].contains(mouseX, mouseY)) {
                     dragging = true;
                     dragnum = i;

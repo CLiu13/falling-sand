@@ -4,7 +4,7 @@ class ParticleManager {
         
         this.board = new Array(height);
         
-        for(var i = 0; i < height; i++) {
+        for (var i = 0; i < height; i++) {
             this.board[i] = new Array(width);
         }
 
@@ -70,6 +70,7 @@ class ParticleManager {
                 }
             }
         }
+
         return ret;
     }
 
@@ -87,17 +88,14 @@ class ParticleManager {
     }
 
     erase(x,y){
-        x = round(x);
-        y = round(y);
-
-        for(let i = 0; i < this.particles.length; i++) {
+        for (let i = 0; i < this.particles.length; i++) {
             let particle = this.particles[i];
             let dist = Math.sqrt((particle.x - x) ** 2 + (particle.y - y) ** 2);      
 
             // the circle around the cursor has diameter 20 (so radius 10)
             if (dist <= 10) {
                 this.particles[i].set(undefined);
-                this.particles.splice(i,1);
+                this.particles.splice(i, 1);
             }
         }
     }

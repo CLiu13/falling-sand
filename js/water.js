@@ -11,18 +11,18 @@ class WaterParticle {
 
     fall() {
         if (this.stoppedStrikes > 30) {
-            if(this.y >= height-11) {
-                return;                
+            if (this.y >= height - 11) {
+                return;
             }
 
-            if (system.board[this.y+5][this.x] == undefined) {
+            if (system.board[this.y + 5][this.x] == undefined) {
                 this.stoppedStrikes = 0;
 
-            } else if (system.board[this.y][this.x+5] == undefined) {
+            } else if (system.board[this.y][this.x + 5] == undefined) {
                 this.x += 5;
                 this.stoppedStrikes = 0;
 
-            } else if (system.board[this.y][this.x-5] == undefined){
+            } else if (system.board[this.y][this.x - 5] == undefined) {
                 this.x -= 5;
                 this.stoppedStrikes = 0;
 
@@ -36,8 +36,8 @@ class WaterParticle {
         // these are hardcoded to be only for rotations of pi/4 rad but that can be changed later
         if (collisionCode == 1) {
             // bounce right
-            let below = system.board[this.y+5][this.x];
-            let right = system.board[this.y+5][this.x+5];
+            let below = system.board[this.y + 5][this.x];
+            let right = system.board[this.y + 5][this.x + 5];
 
             if (below != undefined || right != undefined) {
                 return;
@@ -56,8 +56,8 @@ class WaterParticle {
         } else if (collisionCode == 2) {
             // bounce left
 
-            let below = system.board[this.y+5][this.x];
-            let left = system.board[this.y+5][this.x-5];
+            let below = system.board[this.y + 5][this.x];
+            let left = system.board[this.y + 5][this.x - 5];
 
             if (below != undefined || left != undefined) {
                 return;
@@ -65,23 +65,23 @@ class WaterParticle {
 
             this.set(undefined);
 
-            if (below == undefined){
+            if (below == undefined) {
                 this.y += 5;
             }
 
-            if (left == undefined){
+            if (left == undefined) {
                 this.x -= 5;
             }
 
-        } else if(collisionCode == 3) {
+        } else if (collisionCode == 3) {
             this.set(this);
 
             return;
-            
+
         } else {
-            let below = system.board[this.y+5][this.x];
-            let left = system.board[this.y][this.x-5];
-            let right = system.board[this.y][this.x+5];
+            let below = system.board[this.y + 5][this.x];
+            let left = system.board[this.y][this.x - 5];
+            let right = system.board[this.y][this.x + 5];
 
             if (below != undefined && left != undefined && right != undefined) {
                 // allow for the edge cases to be handled by adding a strike system
@@ -111,24 +111,24 @@ class WaterParticle {
             }
 
             this.set(undefined);
-            
+
             this.stoppedStrikes = 0;
 
-            this.y += 5;            
+            this.y += 5;
         }
 
         if (this.y > height - 12) {
             this.y = height - 12;
             this.stoppedStrikes++;
         }
-        
+
         this.set(this);
     }
 
     set(dat) {
         for (let i = -2; i <= 2; i++) {
             for (let j = -2; j <= 2; j++) {
-                system.board[this.y+i][this.x+j] = dat;
+                system.board[this.y + i][this.x + j] = dat;
             }
         }
     }
