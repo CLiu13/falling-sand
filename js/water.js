@@ -94,17 +94,17 @@ class WaterParticle {
             this.set(undefined)
             if (below != undefined) {
 
-               
 
                 if (left == undefined && right == undefined) {
                     this.x += [-5, 5][Math.floor(Math.random() * 2)];
 
                 } else if (left == undefined) {
                     this.x -= 5;
+                    this.x += [-5, 5][Math.floor(Math.random() * 2)];
 
                 } else if (right == undefined) {
                     this.x += 5;
-
+                    this.x += [-5, 5][Math.floor(Math.random() * 2)];
                 }
 
                 this.set(this);
