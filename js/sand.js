@@ -15,15 +15,12 @@ class SandParticle {
 
             if (system.board[this.y + 5][this.x] == undefined) {
                 this.stoppedStrikes = 0;
-
             } else if (system.board[this.y + 5][this.x + 5] == undefined) {
                 this.x += 5;
                 this.stoppedStrikes = 0;
-
             } else if (system.board[this.y + 5][this.x - 5] == undefined) {
                 this.x -= 5;
                 this.stoppedStrikes = 0;
-
             } else {
                 return;
             }
@@ -34,7 +31,6 @@ class SandParticle {
         // these are hardcoded to be only for rotations of pi/4 rad but that can be changed later
         if (collisionCode == 1) {
             // bounce right
-
             let below = system.board[this.y + 5][this.x];
             let right = system.board[this.y + 5][this.x + 5];
 
@@ -51,10 +47,8 @@ class SandParticle {
             if (right == undefined) {
                 this.x += 5;
             }
-
         } else if (collisionCode == 2) {
             // bounce left
-
             let below = system.board[this.y + 5][this.x];
             let left = system.board[this.y + 5][this.x - 5];
 
@@ -71,11 +65,9 @@ class SandParticle {
             if (left == undefined) {
                 this.x -= 5;
             }
-
         } else if (collisionCode == 3) {
             this.set(this);
             return;
-
         } else {
             let below = system.board[this.y + 5][this.x];
             let left = system.board[this.y + 5][this.x - 5];
@@ -85,9 +77,7 @@ class SandParticle {
                 // allow for the edge cases to be handled by adding a strike system
                 // it only stops if the particle cannot move for x frames in a row.
                 this.stoppedStrikes++;
-
                 return;
-
             }
 
             this.set(undefined);

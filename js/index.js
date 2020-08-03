@@ -66,6 +66,7 @@ let mousePrevY = 0;
 
 function draw() {
     background('white');
+
     // creates bottom 'floor' of structure
     push();
     stroke("black");
@@ -88,10 +89,8 @@ function draw() {
 
             if (!dragging) {
                 system.addNewParticle(mouseX, mouseY);
-                
             } else {
                 system.rectangles[dragnum].incrementCoords(mouseX - mousePrevX, mouseY - mousePrevY);
-
                 mousePrevX = mouseX;
                 mousePrevY = mouseY;
             }
@@ -109,5 +108,4 @@ function draw() {
         circle(mouseX, mouseY, 20);
         pop();
     }
-
 }
