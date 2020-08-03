@@ -10,11 +10,11 @@ Currently the features are:
 
 ## Demo
 
-See it in action [here](https://falling-sand.netlify.app).
+See it in action [here](https://falling-sand.netlify.app)!
 
-Or, check out the demo video, [on YouTube](https://youtu.be/hutZ4MWvH7E).
+Or check out the demo video, [on YouTube](https://youtu.be/hutZ4MWvH7E).
 
-Or, watch the following gif:
+Or watch the following gif:
 
 [![falling-sand.gif](https://s6.gifyu.com/images/falling-sand.gif)](https://gifyu.com/image/W5LD)
 
@@ -22,6 +22,6 @@ Or, watch the following gif:
 
 ## Credits
 
-By Joshua Wang, Tanisha Kore, and Marilyn Yu during Virtual CodeLabs 2020.
+By [Joshua Wang](https://joshwang.me), [Tanisha Kore](https://github.com/takore05), and [Marilyn Yu](https://github.com/maresweetie) during [Virtual CodeLabs 2020](https://labs.codeday.org).
 
-Mentored by Charlie Liu.
+Mentored by [Charlie Liu](https://github.com/CLiu13).
