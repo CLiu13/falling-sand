@@ -1,9 +1,8 @@
 class ParticleManager {
     constructor(rectangles) {
         this.particles = [];
-        
         this.board = new Array(height);
-        
+
         for (var i = 0; i < height; i++) {
             this.board[i] = new Array(width);
         }
@@ -16,24 +15,21 @@ class ParticleManager {
     addNewParticle(x, y) {
         let obj;
 
-        let xcoord = round(random(max(2, x - 10), min(width-11, x + 10)));
-        let ycoord = round(random(max(2, y - 10), min(height-11, y + 10)));
+        let xcoord = round(random(max(2, x - 10), min(width - 11, x + 10)));
+        let ycoord = round(random(max(2, y - 10), min(height - 11, y + 10)));
 
         if (this.material == 1) {
             obj = new SandParticle(xcoord, ycoord);
-
         } else if (this.material == 2) {
             obj = new WaterParticle(xcoord, ycoord);
-
         } else if (this.material == 3) {
-            this.erase(x,y);
-
+            this.erase(x, y);
             return;
         }
 
         for (let i = -2; i <= 2; i++) {
             for (let j = -2; j <= 2; j++) {
-                system.board[ycoord+i][xcoord+j] = obj;
+                system.board[ycoord + i][xcoord + j] = obj;
             }
         }
 
@@ -59,7 +55,6 @@ class ParticleManager {
         let ret = 0;
 
         for (var i = 0; i < this.rectangles.length; i++) {
-            
             if (this.rectangles[i].rot > 0) {
                 if (this.rectangles[i].rightcontains(x, y)) {
                     ret += 1;
@@ -90,7 +85,7 @@ class ParticleManager {
     erase(x,y){
         for (let i = 0; i < this.particles.length; i++) {
             let particle = this.particles[i];
-            let dist = Math.sqrt((particle.x - x) ** 2 + (particle.y - y) ** 2);      
+            let dist = Math.sqrt((particle.x - x) ** 2 + (particle.y - y) ** 2);
 
             // the circle around the cursor has diameter 20 (so radius 10)
             if (dist <= 10) {

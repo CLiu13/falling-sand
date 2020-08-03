@@ -17,15 +17,12 @@ class WaterParticle {
 
             if (system.board[this.y + 5][this.x] == undefined) {
                 this.stoppedStrikes = 0;
-
             } else if (system.board[this.y][this.x + 5] == undefined) {
                 this.x += 5;
                 this.stoppedStrikes = 0;
-
             } else if (system.board[this.y][this.x - 5] == undefined) {
                 this.x -= 5;
                 this.stoppedStrikes = 0;
-
             } else {
                 return;
             }
@@ -52,10 +49,8 @@ class WaterParticle {
             if (right == undefined) {
                 this.x += 5;
             }
-
         } else if (collisionCode == 2) {
             // bounce left
-
             let below = system.board[this.y + 5][this.x];
             let left = system.board[this.y + 5][this.x - 5];
 
@@ -72,12 +67,9 @@ class WaterParticle {
             if (left == undefined) {
                 this.x -= 5;
             }
-
         } else if (collisionCode == 3) {
             this.set(this);
-
             return;
-
         } else {
             let below = system.board[this.y + 5][this.x];
             let left = system.board[this.y][this.x - 5];
@@ -87,26 +79,20 @@ class WaterParticle {
                 // allow for the edge cases to be handled by adding a strike system
                 // it only stops if the particle cannot move for x frames in a row.
                 this.stoppedStrikes++;
-
                 return;
-
             } else if (below != undefined) {
 
                 this.set(undefined);
 
                 if (left == undefined && right == undefined) {
                     this.x += [-5, 5][Math.floor(Math.random() * 2)];
-
                 } else if (left == undefined) {
                     this.x -= 5;
-
                 } else if (right == undefined) {
                     this.x += 5;
-
                 }
 
                 this.set(this);
-
                 return;
             }
 
@@ -141,5 +127,4 @@ class WaterParticle {
         square(this.x, this.y, 5);
         pop();
     }
-
 }
