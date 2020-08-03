@@ -22,6 +22,6 @@ Or watch the following gif:
 
 ## Credits
 
-By [Joshua Wang](https://joshwang.me), [Tanisha Kore](https://github.com/takore05), and [Marilyn Yu](https://github.com/maresweetie) during [Virtual CodeLabs 2020](https://labs.codeday.org).
+By [Joshua Wang](https://joshwang.me), [Tanisha Kore](https://github.com/takore05), and [Marilyn Yu](https://www.linkedin.com/in/marilyn-yu-8894381b4/) during [Virtual CodeLabs 2020](https://labs.codeday.org).
 
 Mentored by [Charlie Liu](https://github.com/CLiu13).
